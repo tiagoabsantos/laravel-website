@@ -14,7 +14,7 @@
                             <h1 class="text-3xl md:text-4xl font-medium ml-7 mt-7 text-gray-800">Latest Photos</h1>
                         </div>
                         <div class="inline-block">
-                            <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-7 mt-7">Add More</button>
+                            <a href="{{ route('create') }}" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mr-7 mt-7">Add More</a>
                         </div>
                     </div>
                     <div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">

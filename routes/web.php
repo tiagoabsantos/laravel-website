@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PhotoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,20 +18,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/settings', function () {
-    return view('settings');
-})->middleware(['auth'])->name('settings');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/settings', function () {
+        return view('settings');
+    })->name('settings');
+    
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-Route::get('/new', function () {
-    return view('new');
-})->middleware(['auth'])->name('new');
-
-Route::get('/update', function () {
-    return view('update');
-})->middleware(['auth'])->name('update');
+    Route::get('/add-more', [PhotoController::class, 'create'])->name('create');
+    Route::post('/add-more', [PhotoController::class, 'store'])->name('add');
+});
 
 require __DIR__.'/auth.php';
