@@ -22,11 +22,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/settings', function () {
         return view('settings');
     })->name('settings');
-    
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
 
+    Route::get('/manage', function () {
+        return view('manage');
+    })->name('manage');
+    
+    Route::get('/dashboard', [PhotoController::class, 'index'])->name('dashboard');
     Route::get('/add-more', [PhotoController::class, 'create'])->name('create');
     Route::post('/add-more', [PhotoController::class, 'store'])->name('add');
 });
