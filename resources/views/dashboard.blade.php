@@ -28,22 +28,24 @@
                     <div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
                         @foreach ($allPhotos as $photo)
                             @if (count($allPhotos) >= 1)
-                                <div class="rounded overflow-hidden shadow-lg">
-                                    <img class="w-full" src="/storage/uploads/{{ $photo->image }}" alt="Mountain">
-                                    <div class="px-6 py-4">
-                                        <div class="font-bold text-xl mb-2">{{ $photo->name }}</div>
-                                        <p class="text-gray-700 text-base">
-                                            {{ $photo->description }}
-                                        </p>
+                                @if ($photo->status === 1)
+                                    <div class="rounded overflow-hidden shadow-lg">
+                                        <img class="w-full" src="/storage/uploads/{{ $photo->image }}" alt="Mountain">
+                                        <div class="px-6 py-4">
+                                            <div class="font-bold text-xl mb-2">{{ $photo->name }}</div>
+                                            <p class="text-gray-700 text-base">
+                                                {{ $photo->description }}
+                                            </p>
+                                        </div>
+                                        <div class="px-6 pt-4 pb-2">
+                                            @foreach ($allTags as $tag)
+                                                @if ($tag->photo_id === $photo->id)
+                                                    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#{{ $tag->tag }}</span>                                                
+                                                @endif
+                                            @endforeach
+                                        </div>
                                     </div>
-                                    <div class="px-6 pt-4 pb-2">
-                                        @foreach ($allTags as $tag)
-                                            @if ($tag->photo_id === $photo->id)
-                                                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#{{ $tag->tag }}</span>                                                
-                                            @endif
-                                        @endforeach
-                                    </div>
-                                </div>
+                                @endif
                             @else
                                 <p>No photos yet!</p>
                             @endif

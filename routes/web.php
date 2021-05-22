@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ManageController;
 use App\Http\Controllers\PhotoController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,9 +24,11 @@ Route::middleware(['auth'])->group(function () {
         return view('settings');
     })->name('settings');
 
-    Route::get('/manage', function () {
-        return view('manage');
-    })->name('manage');
+    Route::get('/manage', [ManageController::class, 'index'])->name('manage');
+    Route::delete('/manage/{id}', [ManageController::class, 'destroy'])->name('delete');
+    Route::get('/manage/update/{id}', [ManageController::class, 'show'])->name('show');
+    Route::put('/manage/update/{id}', [ManageController::class, 'update'])->name('update');
+    Route::put('/manage/update-status/{id}', [ManageController::class, 'updateStatus'])->name('updateStatus');
     
     Route::get('/dashboard', [PhotoController::class, 'index'])->name('dashboard');
     Route::get('/add-more', [PhotoController::class, 'create'])->name('create');

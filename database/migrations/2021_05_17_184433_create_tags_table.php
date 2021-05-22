@@ -17,7 +17,7 @@ class CreateTagsTable extends Migration
             $table->id();
             $table->string('tag');
             $table->unsignedBigInteger('photo_id');
-            $table->foreign('photo_id')->references('id')->on('photos');
+            $table->foreign('photo_id')->references('id')->on('photos')->onDelete('cascade');
             $table->timestamps();
         });
     }

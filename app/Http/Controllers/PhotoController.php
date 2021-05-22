@@ -37,6 +37,8 @@ class PhotoController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'image' => $fileName,
+            'status' => 1,
+            'user_id' => Auth()->user()->id
         ]);
 
         for($i = 0; $i < count($newTags); $i++){
